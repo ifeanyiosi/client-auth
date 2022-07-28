@@ -1,35 +1,16 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import { Link } from "react-router-dom";
 
-import '../App.css'
-
-function Card() {
-    const [heroes, setHeroes] = useState([]);
-    const hero = () => {
-      axios
-        .get("https://akabab.github.io/superhero-api/api/id/1.json")
-        .then((response) => {
-          console.log(response);
-          setHeroes(response.data);
-        });
-    };
-
-    useEffect(() => {
-      hero();
-    }, []);
-
+const Card = ({ post }) => {
   return (
-    <div className='card'>
-      <span className="title">Heroes and Villians</span>
-      {heroes.map((user) => (
-        <div key={user.id}>
-          <img className="img" src={user.images.sm} alt="" />
-          <h2> {user.name} </h2>
-          <p> {user.biography.alignment} </p>
-        </div>
-      ))}
+    <div className="card">
+      <Link className="link" to={`/post/${post.id}`}>
+        <span className="title">{post.title}</span>
+        <img src={post.img} alt="" className="img" />
+        <p className="desc">{post.desc}</p>
+        <button className="cardButton">Read More</button>
+      </Link>
     </div>
   );
-}
+};
 
-export default Card
+export default Card;

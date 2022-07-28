@@ -1,18 +1,14 @@
-import React, { useState } from 'react'
-import Card from '../components/Card';
+import Card from "../components/Card"
+import {posts} from "../data"
 
-import '../App.css'
-
-function Home() {
-    
-
-  return (
-    <div className="home">
-      <Card />
-        
-      
-    </div>
-  );
+const Home = () => {
+    return (
+        <div className="home">
+            {posts.map(post=>(
+                <Card key={post.id} post={post}/>
+            ))}
+        </div>
+    )
 }
 
 export default Home
